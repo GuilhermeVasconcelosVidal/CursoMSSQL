@@ -1,0 +1,14 @@
+--CRIANDO FUNCTION - TABLE VALUE 
+--DROP FUNCION F_CIDADES 
+
+USE curso;
+
+CREATE FUNCTION FN_Cidades (@UF VARCHAR(2))
+RETURNS TABLE 
+AS 
+    RETURN (
+	  SELECT a.nome_mun, a.populacao FROM senso a
+	  WHERE a.uf = @UF);
+
+--INVOCANDO FUNÇÕES 
+  SELECT * FROM	dbo.FN_CIDADES('TO');

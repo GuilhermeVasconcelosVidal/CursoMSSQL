@@ -1,0 +1,40 @@
+--FORMATAÇÃO DE DATAS 
+
+  SELECT CONVERT(VARCHAR(10), GETDATE(), 103);
+
+  SELECT CONVERT(VARCHAR(5), GETDATE(), 103);
+
+  SELECT CONVERT(VARCHAR(10), GETDATE(), 108);
+
+  SELECT CONVERT(VARCHAR(5), GETDATE(), 100);
+
+  SELECT CONVERT(VARCHAR(20), GETDATE(), 100);
+
+  SELECT CONVERT(VARCHAR(8), GETDATE(), 1);
+
+  SELECT SUBSTRING(CONVERT(VARCHAR(10), GETDATE(), 103), 4, 2);
+	
+
+--EXTENÇÃO
+
+  SELECT CAST(DAY(GETDATE()) AS VARCHAR(2)) + ' ' +
+         DATENAME(MM, GETDATE()) AS [Dia e Mes]
+
+
+--EXEMPLO EM TABELA 
+
+USE crm;
+
+  SELECT a.nascimento,
+         CONVERT (VARCHAR(10),a.nascimento,120)padrão120,
+         CONVERT (VARCHAR(10),a.nascimento,103)padrão103,
+         CONVERT (VARCHAR(20),a.nascimento,100)padrão100,
+		 CONVERT (VARCHAR(11),a.nascimento,100)padrão100,
+		 CONVERT (VARCHAR(8),a.nascimento,1)padrão1
+  FROM cliente a;
+
+
+
+
+
+

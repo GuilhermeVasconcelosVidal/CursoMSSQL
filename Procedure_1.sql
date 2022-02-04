@@ -1,0 +1,95 @@
+--RETORNAR APENAS O CONTEUDO ESTATICO 
+--DROP PROCEDURE PROC_OLA
+
+USE curso;
+
+  CREATE PROCEDURE PROC_OLA
+  AS 
+  BEGIN
+      SELECT 'O famoso Olá mundo!'
+  END;
+
+
+--EXECUTANDO POCEDURE
+
+EXEC PROC_OLA
+
+--OUTRO EXEMPLO 
+--RETORNAR TEXTO EXTERNO ATRAVÉS DE PARAMETRO
+--DROP PROC_RET_MSG
+
+  CREATE PROCEDURE PROC_RET_MSG(@meutexto VARCHAR(100))
+  AS
+  BEGIN
+      SELECT 'TEXTO INFORMADO >>: ' +@meutexto
+  END
+    
+--EXECUTANDO PROCEDURE
+
+  EXEC PROC_RET_MSG 'Teste foi realizado com Sucesso'
+
+
+--EXEMPLO 1
+
+--RETORNAR BOAS VINDAS PARA OS USUARIOS LOGADOS
+--DROP PROCEDURE proc_msg_boas_vindas
+
+
+USE curso;
+
+  CREATE PROCEDURE	proc_msg_boas_vindas
+  AS 
+  BEGIN
+     
+	 PRINT 'Seja Bem-Vindo'+' '+ SYSTEM_USER
+	 
+	 IF (DATEPART(HOUR, GETDATE())>8 AND DATEPART(HOUR,GETDATE())<12)
+	     PRINT 'Bom dia!!'
+     
+	 ELSE IF (DATEPART(HOUR, GETDATE())>=12 AND DATEPART(HOUR,GETDATE())<= 18)
+	     PRINT 'Boa tarde!!'
+     
+	 ELSE 
+	     PRINT 'Boa noite!!'
+  END;
+
+
+--EXECUTANDO PROCEDURE 
+EXEC proc_msg_boas_vindas
+
+
+
+--EXEMPLO 2
+
+--PROCEDURE PARA CALCULAR QUADRADO
+
+--DROP PROCEDURE calc_quadrado;
+
+  CREATE PROCEDURE calc_quadrado @PAR1 INT 
+  AS 
+  BEGIN
+     SELECT @PAR1*@PAR1 AS QUADRADO
+  END
+
+--EXECUTANDO PROCEDURE 
+  EXEC calc_quadrado 4
+
+--PROCEDURE PARA CALCULAR CUBO 
+ 
+ --DROP procedure calc_cubo
+  
+  CREATE PROCEDURE calc_cubo @PAR1 INT 
+  AS 
+  BEGIN
+     SELECT @PAR1*@PAR1*@PAR1 AS CUBO
+  END
+
+--EXECUTE PROCEDURE 
+  EXEC calc_cubo 2;
+
+
+
+
+
+
+
